@@ -1,0 +1,60 @@
+  
+
+
+		// PrefixSum Tecnique
+		// ---------------------
+		// n=5
+
+		// index : 0  1  2  3   4 
+		// value : 2  4  1  5  10  n*Q 10^5*10^5= 10^10
+		// Prefix: 2  6  7  12 22  n+Q 10^5+10^5 = 2*10^5 
+
+		// Query:1 
+		// 	range: 
+		// 		l r = prifix[r] - prefix[l-1]
+		// 		2 4 =  22 - 6 = 16
+		// 		if(l==0) ans = prefix[r];
+		// 		
+		// 		
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+
+	ios_base::sync_with_stdio(0);
+	cin.tie(NULL);
+
+		int n; cin>>n;
+		int ar[n+1];
+		// taking values
+		for(int i=0; i<n; i++)cin>>ar[i];
+
+		int pre[n+1];
+		pre[0] = ar[0];
+
+		// sum of prefixes
+		for(int i=1; i<n ; i++){
+			pre[i]=pre[i-1]+ar[i]; 
+		}
+
+		int q;
+		cin>>q;
+		while(q--){
+			int l, r; cin>>l>>r;
+			if(l==0)cout<<pre[r]<<'\n';
+			else cout<< pre[r]-pre[l-1]<<'\n';
+
+		}
+		return 0;
+}
+
+
+
+
+
+
+
+
+
